@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TaskManager manager = new TaskManager();
+
+        while (true) {
+            System.out.println("\n--- Task Manager ---");
+            System.out.println("1. Añadir tarea");
+            System.out.println("2. Listar tareas");
+            System.out.println("3. Completar tarea");
+            System.out.println("4. Eliminar tarea");
+            System.out.println("5. Salir");
+            System.out.print("Selecciona una opción: ");
+
+            int option = scanner.nextInt();
+            scanner.nextLine(); // limpiar buffer
+
+            switch (option) {
+                case 1:
+                    System.out.print("Título de la tarea: ");
+                    String title = scanner.nextLine();
+                    manager.addTask(title);
+                    break;
+
+                case 2:
+                    manager.listTasks();
+                    break;
+
+                case 3:
+                    System.out.print("Índice de la tarea a completar: ");
+                    int completeIndex = scanner.nextInt();
+                    manager.completeTask(completeIndex);
+                    break;
+
+                case 4:
+                    System.out.print("Índice de la tarea a eliminar: ");
+                    int deleteIndex = scanner.nextInt();
+                    manager.deleteTask(deleteIndex);
+                    break;
+
+                case 5:
+                    System.out.println("Saliendo...");
+                    return;
+
+                default:
+                    System.out.println("Opción inválida.");
+            }
+        }
+    }
+}
